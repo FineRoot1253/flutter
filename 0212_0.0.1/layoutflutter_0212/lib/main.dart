@@ -1,111 +1,113 @@
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
 
+
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+  Widget build(BuildContext context) { // Row를 정하고 그 안에 컬럼이 몇개 들어가는지, 위젯에 몇개 들어갈지 정해야한다 그것이 가장 중요한 요소이다.
+    Color c = Theme.of(context).primaryColor;
+    Widget titleSection = Container( //  위 아래 오른쪽 왼쪽 싹다 32픽셀씩 띄우겠다는 의미이다. container 안에 넣으면 아래줄 코드 처럼 패딩을 설정할수 있다 하위 위젯 전체에 적용 시키기 위함이다
+      padding: const EdgeInsets.all(32),
+        child: Row(
+        children: [ //  Row 안에 넣을 children은 3 Expanded 위젯(2줄짜리 텍스트 column 이기 때문에) , Icon, Text까지
+          Expanded(//  Expanded 위젯 안에는 child로 column을 가지고 column은 children으로 총 2개이다 container와 text
+            /*1*/
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /*2*/
+                Container( //  container는  child를 가지는데 text이다  container 안에 첫 번째 row의 text를 넣을 경우 padding을 정할 수 있다
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    'Negative Cat',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Meow',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          /*3*/
+          Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          Text('41'),
+        ],
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
-  }
-}
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+    Column _buildButtonColumn(Color c, IconData icon, String label) { //Column형을 반환하는 메서드이다 icon과 color는 호출할때 파라미터를 통해 정해진다
+      return Column(
+        mainAxisSize: MainAxisSize.min,  // 이것은 모든 column 이 동일한 위치에 있도록 위치지정을 해주는 위젯이다
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: c),
+          Container(
+            margin: const EdgeInsets.only(top: 8),
+              child: Text(  // text는 String인데 이것또한 매개변수를 통해 정해진다
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: c,
+                ),
+              ),
+          ),
+        ],
+      );
+    }
+    Widget buttonSection = Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildButtonColumn(c, Icons.call, 'CALL'),
+            _buildButtonColumn(c, Icons.near_me, 'ROUTE'),
+            _buildButtonColumn(c, Icons.share, 'SHARE'),
+          ],
+        )
+    );
+    Widget textSection = Container(
+      padding: const EdgeInsets.all(32),
+        child: Text(
+          'Meow... Mew...Me..Meow....',
+             softWrap: true, // 이것을 넣으면 단어를 줄바꿈 하기 전에 column의 너비를 자동으로 채운다
+      )
+    );
+    return MaterialApp(
+      title: 'Flutter layout demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter layout demo'),
+        ),
+        /*
+        body: Center(
+          child: Text('Hello World'),
+        ),
+         */ // 20_02_12_0.0.1 15:26 modified
+        body: ListView(
+          children: [
+            Image.asset(
+              'image/a.jpg',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+            titleSection,
+            buttonSection,
+            textSection,
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
