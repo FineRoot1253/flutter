@@ -9,6 +9,12 @@
       <excludeFolder url="file://$MODULE_DIR$/0212_0.0.1/layoutflutter_0212/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/0212_0.0.1/layoutflutter_0212/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/0212_0.0.1/layoutflutter_0212/build" />
+      <excludeFolder url="file://$MODULE_DIR$/0218_0.0.1/beginningflutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/0218_0.0.1/beginningflutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/0218_0.0.1/beginningflutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/0225_0.0.1/second_flutter_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/0225_0.0.1/second_flutter_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/0225_0.0.1/second_flutter_app/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

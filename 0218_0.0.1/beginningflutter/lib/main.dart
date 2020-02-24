@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main(){
   runApp(new MaterialApp(
@@ -27,6 +28,7 @@ class myHomepage extends StatelessWidget{  // 항상 클래스를 구성한다�
                                            // 이 클래스 내부에 앱바와 같은 기본적인 레이아웃 기능을 제공하는 위젯인 스캐폴드를 사용하겠다
   @override
   Widget build(BuildContext context){
+    SystemChrome.setEnabledSystemUIOverlays([]); // 상태바 네이게이션 바 hidding
     /*
     return new Material(
       color: Colors.white,
@@ -65,6 +67,7 @@ class myHomepage extends StatelessWidget{  // 항상 클래스를 구성한다�
         )
     );*/  //20_02_18_0.0.3 17:44 modified
     return new Scaffold(
+      resizeToAvoidBottomPadding: false, //appBar: new AppBar(), 바닥에 패딩을 준다.
       backgroundColor: Colors.grey,
       /*
       appBar: new AppBar(
@@ -75,6 +78,7 @@ class myHomepage extends StatelessWidget{  // 항상 클래스를 구성한다�
         ],
       ), */ //appBar의 경우 이다. 스캐폴드에 들어있는 기본 레이아웃 종류는 여러가지가 있다
       body: Container(
+
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/예시bi1.png"),
